@@ -7,9 +7,9 @@ using System.Text;
 
 namespace Sheleski.DelimitedFile
 {
-    class DelimitedFileTextReaderValueSource : IEnumerable<IEnumerable<string>>, IDisposable
+    class DelimitedFileTextReaderSource : IEnumerable<IEnumerable<string>>, IDisposable
     {
-        public DelimitedFileTextReaderValueSource(TextReader textReader, IDelimitedFileLoadOptions options)
+        public DelimitedFileTextReaderSource(TextReader textReader, IDelimitedFileLoadOptions options)
         {
             this.TextReader = textReader;
             this.Options = options;
@@ -133,14 +133,14 @@ namespace Sheleski.DelimitedFile
 
         class Enumerator : IEnumerator<IEnumerable<string>>
         {
-            public Enumerator(DelimitedFileTextReaderValueSource parent)
+            public Enumerator(DelimitedFileTextReaderSource parent)
             {
                 Parent = parent;
             }
 
             public IEnumerable<string> Current { get; set; }
 
-            public DelimitedFileTextReaderValueSource Parent { get; private set; }
+            public DelimitedFileTextReaderSource Parent { get; private set; }
 
             object IEnumerator.Current { get { return this.Current; } }
 

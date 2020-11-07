@@ -6,7 +6,7 @@ namespace Sheleski.DelimitedFile
     {
         public static TabDelimitedFile Parse(string tabString)
         {
-            return Parse(tabString, TabDelimitedFileOptions.WithoutHeaders);
+            return Parse(tabString, TabDelimitedFileLoadOptions.WithoutHeaders);
         }
 
         public static TabDelimitedFile Parse(string tabString, TabDelimitedFileLoadOptions options)

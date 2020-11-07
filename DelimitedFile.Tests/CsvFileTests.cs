@@ -9,7 +9,7 @@ using System.Xml.Linq;
 namespace Sheleski.DelimitedFile.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class CsvFileTests
     {
         [TestMethod]
         public async Task CsvFile_Load_Works()
@@ -55,17 +55,19 @@ namespace Sheleski.DelimitedFile.Tests
                 Headers = headers,
                 Values = values
             };
+            string csvString;
 
-
-            // Act
-            using (var memStream = new MemoryStream())
-            using (var writer = new StreamWriter(memStream))
+            using (var writer = new StringWriter())
             {
+                // Act
                 csv.Write(writer);
 
-                // Verify
-                Assert.IsTrue(memStream.Length > 0);
+                csvString = writer.ToString();
             }
+
+
+            // Verify
+            Assert.IsTrue(csvString.Length > 0);
         }
     }
 }

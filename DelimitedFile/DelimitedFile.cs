@@ -42,7 +42,7 @@ namespace Sheleski.DelimitedFile
                 {
                     if (!isFirstHeader)
                     {
-                        writer.Write(',');
+                        writer.Write(options.Delimiter);
                     }
 
                     writer.Write(EscapeValue(value, options));
