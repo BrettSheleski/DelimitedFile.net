@@ -32,3 +32,14 @@ using (var writer = new StringWriter())
     string csvString = writer.ToString();
 }
 ```
+
+### Load a CSV from a  stream
+```
+WebRequest request = HttpWebRequest.Create("https://raw.githubusercontent.com/forxer/languages-list/master/src/Languages.csv");
+using (WebResponse response = await request.GetResponseAsync())
+using (var stream = response.GetResponseStream())
+using (var reader = new StreamReader(stream))
+{
+  var csvFile = CsvFile.Load(reader, CsvFileLoadOptions.WithHeaders);
+}
+```
