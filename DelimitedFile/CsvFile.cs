@@ -44,5 +44,18 @@ namespace Sheleski.DelimitedFile
             base.Write(writer, options);
         }
 
+        public void Save(string filePath)
+        {
+            Save(filePath, CsvFileOptions.WithHeaders);
+        }
+
+        public void Save(string filePath, CsvFileOptions options)
+        {
+            using (var stream = new FileStream(filePath, FileMode.OpenOrCreate))
+            using (var writer = new StreamWriter(stream))
+            {
+                Write(writer, options);
+            }
+        }
     }
 }
