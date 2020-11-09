@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+
+#if NET45 || NETSTANDARD
 using System.Threading;
 using System.Threading.Tasks;
+#endif
 
 namespace Sheleski.DelimitedFile
 {
-    public abstract class DelimitedFile
+    public abstract partial class DelimitedFile
     {
         public virtual IEnumerable<string> Headers { get; set; }
 
@@ -58,9 +61,6 @@ namespace Sheleski.DelimitedFile
             return valuesWritten;
         }
 
-
-        
-
         private static string EscapeValue(string value, IDelimitedFileOptions options)
         {
             if (
@@ -76,57 +76,5 @@ namespace Sheleski.DelimitedFile
 
             return value;
         }
-#if NET45 || NETSTANDARD
-        internal static async Task WriteAsync( TextWriter writer, IEnumerable<string> headers, IEnumerable<IEnumerable<string>> values, IDelimitedFileOptions options, CancellationToken cancellationToken)
-        {
-            bool writeNewline = options.FirstRowAsHeaders && (await WriteValuesAsync(writer, headers, options, cancellationToken)) > 0;
-
-            if (values != null && !cancellationToken.IsCancellationRequested)
-            {
-                foreach (var line in values)
-                {
-                    if (writeNewline)
-                    {
-                        await writer.WriteAsync(options.LineEnding);
-                    }
-
-                    await WriteValuesAsync(writer, line, options, cancellationToken);
-
-                    writeNewline = true;
-
-                    if (cancellationToken.IsCancellationRequested)
-                        break;
-                }
-            }
-        }
-
-        private static async Task<int> WriteValuesAsync(TextWriter writer, IEnumerable<string> values, IDelimitedFileOptions options, CancellationToken cancellationToken)
-        {
-            int valuesWritten = 0;
-
-            if (values != null)
-            {
-                bool isFirstHeader = true;
-                foreach (var value in values)
-                {
-                    if (!isFirstHeader)
-                    {
-                        await writer.WriteAsync(options.Delimiter);
-                    }
-
-                    await writer.WriteAsync(EscapeValue(value, options));
-
-                    ++valuesWritten;
-                    isFirstHeader = false;
-
-                    if (cancellationToken.IsCancellationRequested)
-                        break;
-                }
-            }
-
-            return valuesWritten;
-        }
-
-#endif
     }
 }

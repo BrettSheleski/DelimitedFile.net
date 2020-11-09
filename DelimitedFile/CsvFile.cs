@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+
+#if NET45 || NETSTANDARD
 using System.Threading;
 using System.Threading.Tasks;
+#endif
 
 namespace Sheleski.DelimitedFile
 {
-    public class CsvFile : DelimitedFile
+    public partial class CsvFile : DelimitedFile
     {
         public static CsvFile Parse(string csvString)
         {
@@ -36,31 +39,6 @@ namespace Sheleski.DelimitedFile
             };
         }
 
-#if NET45 || NETSTANDARD
-        public Task WriteAsync(TextWriter writer)
-        {
-            return WriteAsync(writer, CsvFileOptions.WithHeaders, CancellationToken.None);
-        }
-
-        public Task WriteAsync(TextWriter writer, CsvFileOptions options)
-        {
-            return WriteAsync(writer, options, CancellationToken.None);
-        }
-
-        public Task WriteAsync(TextWriter writer, CancellationToken cancellationToken)
-        {
-            return WriteAsync(writer, CsvFileOptions.WithHeaders, cancellationToken);
-        }
-
-        public async Task WriteAsync(TextWriter writer, CsvFileOptions options, CancellationToken cancellationToken)
-        {
-            await WriteAsync(writer, this.Headers, this.Values, options, cancellationToken);
-        }
-#endif
-
-
-
-
         public void Write(TextWriter writer)
         {
             this.Write(writer, CsvFileOptions.WithHeaders);
@@ -70,46 +48,5 @@ namespace Sheleski.DelimitedFile
         {
             Write(writer, options, this.Headers, this.Values);
         }
-
-        public void Save(string filePath)
-        {
-            Save(filePath, CsvFileOptions.WithHeaders);
-        }
-
-        public void Save(string filePath, CsvFileOptions options)
-        {
-            using (var stream = new FileStream(filePath, FileMode.OpenOrCreate))
-            using (var writer = new StreamWriter(stream))
-            {
-                Write(writer, options);
-            }
-        }
-
-#if NET45 || NETSTANDARD
-        public Task SaveAsync(string filePath)
-        {
-            return SaveAsync(filePath, CancellationToken.None);
-        }
-
-        public Task SaveAsync(string filePath, CancellationToken cancellationToken)
-        {
-            return SaveAsync(filePath, CsvFileOptions.WithHeaders, cancellationToken);
-        }
-
-        public Task SaveAsync(string filePath, CsvFileOptions options)
-        {
-            return SaveAsync(filePath, options, CancellationToken.None);
-        }
-
-        public async Task SaveAsync(string filePath, CsvFileOptions options, CancellationToken cancellationToken)
-        {
-            using (var stream = new FileStream(filePath, FileMode.OpenOrCreate))
-            using (var writer = new StreamWriter(stream))
-            {
-                await WriteAsync(writer, options, cancellationToken);
-            }
-        }
-#endif
-
     }
 }
