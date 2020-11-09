@@ -1,4 +1,4 @@
-# DelimitedFile.net
+# Sheleski.DelimitedFile
 Library for parsing and saving CSV and Tab Delimited Files in .NET.
 
 ## Usage
