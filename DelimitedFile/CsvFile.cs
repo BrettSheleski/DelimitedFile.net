@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Sheleski.DelimitedFile
 {
@@ -34,14 +36,38 @@ namespace Sheleski.DelimitedFile
             };
         }
 
+
+        public Task WriteAsync(TextWriter writer)
+        {
+            return WriteAsync(writer, CsvFileOptions.WithHeaders, CancellationToken.None);
+        }
+
+        public Task WriteAsync(TextWriter writer, CsvFileOptions options)
+        {
+            return WriteAsync(writer, options, CancellationToken.None);
+        }
+
+        public Task WriteAsync(TextWriter writer, CancellationToken cancellationToken)
+        {
+            return WriteAsync(writer, CsvFileOptions.WithHeaders, cancellationToken);
+        }
+
+        public async Task WriteAsync(TextWriter writer, CsvFileOptions options, CancellationToken cancellationToken)
+        {
+            await WriteAsync(writer, this.Headers, this.Values, options, cancellationToken);
+        }
+
+
+
+
         public void Write(TextWriter writer)
         {
-            base.Write(writer, CsvFileOptions.WithHeaders);
+            this.Write(writer, CsvFileOptions.WithHeaders);
         }
 
         public void Write(TextWriter writer, CsvFileOptions options)
         {
-            base.Write(writer, options);
+            Write(writer, options, this.Headers, this.Values);
         }
 
         public void Save(string filePath)
@@ -57,5 +83,31 @@ namespace Sheleski.DelimitedFile
                 Write(writer, options);
             }
         }
+
+
+        public Task SaveAsync(string filePath)
+        {
+            return SaveAsync(filePath, CancellationToken.None);
+        }
+
+        public Task SaveAsync(string filePath, CancellationToken cancellationToken)
+        {
+            return SaveAsync(filePath, CsvFileOptions.WithHeaders, cancellationToken);
+        }
+
+        public Task SaveAsync(string filePath, CsvFileOptions options)
+        {
+            return SaveAsync(filePath, options, CancellationToken.None);
+        }
+
+        public async Task SaveAsync(string filePath, CsvFileOptions options, CancellationToken cancellationToken)
+        {
+            using (var stream = new FileStream(filePath, FileMode.OpenOrCreate))
+            using (var writer = new StreamWriter(stream))
+            {
+                await WriteAsync(writer, options, cancellationToken);
+            }
+        }
+
     }
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Sheleski.DelimitedFile
 {
@@ -11,13 +13,13 @@ namespace Sheleski.DelimitedFile
 
         public virtual IEnumerable<IEnumerable<string>> Values { get; set; }
 
-        internal void Write(TextWriter writer, IDelimitedFileOptions options)
+        internal static void Write(TextWriter writer, IDelimitedFileOptions options, IEnumerable<string> headers, IEnumerable<IEnumerable<string>> values)
         {
-            bool writeNewline = options.FirstRowAsHeaders && WriteValues(writer, Headers, options) > 0;
+            bool writeNewline = options.FirstRowAsHeaders && WriteValues(writer, headers, options) > 0;
 
-            if (Values != null)
+            if (values != null)
             {
-                foreach (var line in Values)
+                foreach (var line in values)
                 {
                     if (writeNewline)
                     {
@@ -56,6 +58,34 @@ namespace Sheleski.DelimitedFile
             return valuesWritten;
         }
 
+
+        private static async Task<int> WriteValuesAsync(TextWriter writer, IEnumerable<string> values, IDelimitedFileOptions options, CancellationToken cancellationToken)
+        {
+            int valuesWritten = 0;
+
+            if (values != null)
+            {
+                bool isFirstHeader = true;
+                foreach (var value in values)
+                {
+                    if (!isFirstHeader)
+                    {
+                        await writer.WriteAsync(options.Delimiter);
+                    }
+
+                    await writer.WriteAsync(EscapeValue(value, options));
+
+                    ++valuesWritten;
+                    isFirstHeader = false;
+
+                    if (cancellationToken.IsCancellationRequested)
+                        break;
+                }
+            }
+
+            return valuesWritten;
+        }
+
         private static string EscapeValue(string value, IDelimitedFileOptions options)
         {
             if (
@@ -70,6 +100,29 @@ namespace Sheleski.DelimitedFile
             }
 
             return value;
+        }
+
+        internal static async Task WriteAsync( TextWriter writer, IEnumerable<string> headers, IEnumerable<IEnumerable<string>> values, IDelimitedFileOptions options, CancellationToken cancellationToken)
+        {
+            bool writeNewline = options.FirstRowAsHeaders && (await WriteValuesAsync(writer, headers, options, cancellationToken)) > 0;
+
+            if (values != null && !cancellationToken.IsCancellationRequested)
+            {
+                foreach (var line in values)
+                {
+                    if (writeNewline)
+                    {
+                        await writer.WriteAsync(options.LineEnding);
+                    }
+
+                    await WriteValuesAsync(writer, line, options, cancellationToken);
+
+                    writeNewline = true;
+
+                    if (cancellationToken.IsCancellationRequested)
+                        break;
+                }
+            }
         }
     }
 }
