@@ -34,12 +34,12 @@ namespace Sheleski.DelimitedFile
 
         public void Write(TextWriter writer)
         {
-            base.Write(writer, TabDelimitedFileOptions.WithHeaders);
+            this.Write(writer, TabDelimitedFileOptions.WithHeaders);
         }
 
         public void Write(TextWriter writer, TabDelimitedFileOptions options)
         {
-            base.Write(writer, options);
+            Write(writer, options, Headers, Values);
         }
     }
 }

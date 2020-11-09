@@ -59,6 +59,47 @@ namespace Sheleski.DelimitedFile
         }
 
 
+        
+
+        private static string EscapeValue(string value, IDelimitedFileOptions options)
+        {
+            if (
+                (options.TextQualifier != null && value.Any(c => c == options.Delimiter || c == options.TextQualifier)) ||
+                (options.LineEnding != null && value.Contains(options.LineEnding))
+                )
+            {
+                string oneQuote = options.TextQualifier.ToString();
+                string twoQuotes = $"{options.TextQualifier}{options.TextQualifier}";
+
+                value = $"{options.TextQualifier}{value.Replace(oneQuote, twoQuotes)}{options.TextQualifier}";
+            }
+
+            return value;
+        }
+#if NET45 || NETSTANDARD
+        internal static async Task WriteAsync( TextWriter writer, IEnumerable<string> headers, IEnumerable<IEnumerable<string>> values, IDelimitedFileOptions options, CancellationToken cancellationToken)
+        {
+            bool writeNewline = options.FirstRowAsHeaders && (await WriteValuesAsync(writer, headers, options, cancellationToken)) > 0;
+
+            if (values != null && !cancellationToken.IsCancellationRequested)
+            {
+                foreach (var line in values)
+                {
+                    if (writeNewline)
+                    {
+                        await writer.WriteAsync(options.LineEnding);
+                    }
+
+                    await WriteValuesAsync(writer, line, options, cancellationToken);
+
+                    writeNewline = true;
+
+                    if (cancellationToken.IsCancellationRequested)
+                        break;
+                }
+            }
+        }
+
         private static async Task<int> WriteValuesAsync(TextWriter writer, IEnumerable<string> values, IDelimitedFileOptions options, CancellationToken cancellationToken)
         {
             int valuesWritten = 0;
@@ -86,43 +127,6 @@ namespace Sheleski.DelimitedFile
             return valuesWritten;
         }
 
-        private static string EscapeValue(string value, IDelimitedFileOptions options)
-        {
-            if (
-                (options.TextQualifier != null && value.Any(c => c == options.Delimiter || c == options.TextQualifier)) ||
-                (options.LineEnding != null && value.Contains(options.LineEnding))
-                )
-            {
-                string oneQuote = options.TextQualifier.ToString();
-                string twoQuotes = $"{options.TextQualifier}{options.TextQualifier}";
-
-                value = $"{options.TextQualifier}{value.Replace(oneQuote, twoQuotes)}{options.TextQualifier}";
-            }
-
-            return value;
-        }
-
-        internal static async Task WriteAsync( TextWriter writer, IEnumerable<string> headers, IEnumerable<IEnumerable<string>> values, IDelimitedFileOptions options, CancellationToken cancellationToken)
-        {
-            bool writeNewline = options.FirstRowAsHeaders && (await WriteValuesAsync(writer, headers, options, cancellationToken)) > 0;
-
-            if (values != null && !cancellationToken.IsCancellationRequested)
-            {
-                foreach (var line in values)
-                {
-                    if (writeNewline)
-                    {
-                        await writer.WriteAsync(options.LineEnding);
-                    }
-
-                    await WriteValuesAsync(writer, line, options, cancellationToken);
-
-                    writeNewline = true;
-
-                    if (cancellationToken.IsCancellationRequested)
-                        break;
-                }
-            }
-        }
+#endif
     }
 }

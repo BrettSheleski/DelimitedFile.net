@@ -36,7 +36,7 @@ namespace Sheleski.DelimitedFile
             };
         }
 
-
+#if NET45 || NETSTANDARD
         public Task WriteAsync(TextWriter writer)
         {
             return WriteAsync(writer, CsvFileOptions.WithHeaders, CancellationToken.None);
@@ -56,6 +56,7 @@ namespace Sheleski.DelimitedFile
         {
             await WriteAsync(writer, this.Headers, this.Values, options, cancellationToken);
         }
+#endif
 
 
 
@@ -84,7 +85,7 @@ namespace Sheleski.DelimitedFile
             }
         }
 
-
+#if NET45 || NETSTANDARD
         public Task SaveAsync(string filePath)
         {
             return SaveAsync(filePath, CancellationToken.None);
@@ -108,6 +109,7 @@ namespace Sheleski.DelimitedFile
                 await WriteAsync(writer, options, cancellationToken);
             }
         }
+#endif
 
     }
 }
