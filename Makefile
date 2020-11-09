@@ -17,3 +17,6 @@ build:
 
 package:
 	$(DOTNET) pack -c $(CONFIG) -v $(VERBOSITY)
+
+test:
+	$(DOTNET) test -c $(CONFIG) -v $(VERBOSITY)
