@@ -16,9 +16,7 @@ namespace Sheleski.DelimitedFile
 
             if (options.FirstRowAsHeaders)
             {
-                var headers = this.GetNextLine().ToList();
-
-                this.Headers = headers.Count > 0 ? headers : null;
+                this.Headers = this.Take(1).FirstOrDefault();
             }
         }
 

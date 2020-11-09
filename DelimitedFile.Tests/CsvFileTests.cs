@@ -31,7 +31,12 @@ namespace Sheleski.DelimitedFile.Tests
                 // put headers and values in-memory to avoid crazy shit due to iterating over the collections multiple times
 
                 List<string> headers = csvFile.Headers.ToList();
+
+                var headersAgain = csvFile.Headers.ToList();
+
                 List<List<string>> values = csvFile.Values.Select(x => x.ToList()).ToList();
+
+                var valuesAgain = csvFile.Values.Select(x => x.ToList()).ToList();
 
                 Assert.IsTrue(headers.Count == 5);
                 Assert.IsTrue(values.All(x => x.Count == 5));
