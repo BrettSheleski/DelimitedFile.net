@@ -1,11 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net45;net40</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
     <AssemblyName>Sheleski.DelimitedFile</AssemblyName>
     <RootNamespace>Sheleski.DelimitedFile</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.1.0.0</Version>
   </PropertyGroup>
-
 </Project>
