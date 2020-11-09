@@ -46,7 +46,7 @@ namespace Sheleski.DelimitedFile
 
         public void Write(TextWriter writer, CsvFileOptions options)
         {
-            Write(writer, options, this.Headers, this.Values);
+            Write(writer, this.Headers, this.Values, options);
         }
     }
 }

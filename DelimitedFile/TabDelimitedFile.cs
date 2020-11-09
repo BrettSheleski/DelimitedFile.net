@@ -39,7 +39,7 @@ namespace Sheleski.DelimitedFile
 
         public void Write(TextWriter writer, TabDelimitedFileOptions options)
         {
-            Write(writer, options, Headers, Values);
+            Write(writer, Headers, Values, options);
         }
     }
 }

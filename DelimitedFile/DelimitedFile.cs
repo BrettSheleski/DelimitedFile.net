@@ -16,7 +16,7 @@ namespace Sheleski.DelimitedFile
 
         public virtual IEnumerable<IEnumerable<string>> Values { get; set; }
 
-        internal static void Write(TextWriter writer, IDelimitedFileOptions options, IEnumerable<string> headers, IEnumerable<IEnumerable<string>> values)
+        internal static void Write(TextWriter writer, IEnumerable<string> headers, IEnumerable<IEnumerable<string>> values, IDelimitedFileOptions options)
         {
             bool writeNewline = options.FirstRowAsHeaders && WriteValues(writer, headers, options) > 0;
 
