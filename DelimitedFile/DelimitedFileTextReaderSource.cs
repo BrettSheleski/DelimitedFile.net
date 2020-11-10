@@ -16,7 +16,7 @@ namespace Sheleski.DelimitedFile
 
             if (options.FirstRowAsHeaders)
             {
-                this.Headers = this.Take(1).FirstOrDefault();
+                this.Headers = this.Take(1).FirstOrDefault()?.ToArray();
             }
         }
 
@@ -27,8 +27,6 @@ namespace Sheleski.DelimitedFile
 
         public void Dispose()
         {
-            this.TextReader?.Dispose();
-            this.TextReader = null;
         }
 
         public IEnumerator<IEnumerable<string>> GetEnumerator()
