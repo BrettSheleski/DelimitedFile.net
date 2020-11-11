@@ -1,24 +1,23 @@
 ﻿namespace Sheleski.DelimitedFile
 {
-    public class CsvFileLoadOptions : CsvFileOptions, IDelimitedFileLoadOptions
+    public class TabDelimitedFileLoadOptions : TabDelimitedFileOptions, IDelimitedFileLoadOptions
     {
-        public static new CsvFileLoadOptions WithHeaders { get; } = new CsvFileLoadOptions
+        public static new TabDelimitedFileLoadOptions WithHeaders = new TabDelimitedFileLoadOptions
         {
             FirstRowAsHeaders = true
         };
 
-        public static new CsvFileLoadOptions WithoutHeaders { get; } = new CsvFileLoadOptions
+        public static new TabDelimitedFileLoadOptions WithoutHeaders = new TabDelimitedFileLoadOptions
         {
-            FirstRowAsHeaders = true
+            FirstRowAsHeaders = false
         };
 
         public int BufferSize { get; set; } = 1024;
 
-
 #if NET5_0
-        public override CsvFileLoadOptions WithLineEnding(string lineEndings)
+        public override TabDelimitedFileLoadOptions WithLineEnding(string lineEndings)
         {
-            return new CsvFileLoadOptions
+            return new TabDelimitedFileLoadOptions
             {
                 FirstRowAsHeaders = this.FirstRowAsHeaders,
                 LineEnding = lineEndings,
@@ -27,9 +26,9 @@
             };
         }
 
-        public override CsvFileLoadOptions WithFirstRowAsHeaders(bool firstRowAsHeaders = true)
+        public override TabDelimitedFileLoadOptions WithFirstRowAsHeaders(bool firstRowAsHeaders = true)
         {
-            return new CsvFileLoadOptions
+            return new TabDelimitedFileLoadOptions
             {
                 FirstRowAsHeaders = firstRowAsHeaders,
                 LineEnding = this.LineEnding,
@@ -38,9 +37,9 @@
             };
         }
 
-        public override CsvFileLoadOptions WithTextQualifier(char? textQualifier)
+        public override TabDelimitedFileLoadOptions WithTextQualifier(char? textQualifier)
         {
-            return new CsvFileLoadOptions
+            return new TabDelimitedFileLoadOptions
             {
                 FirstRowAsHeaders = this.FirstRowAsHeaders,
                 LineEnding = this.LineEnding,
@@ -49,9 +48,9 @@
             };
         }
 
-        public virtual CsvFileLoadOptions WithBufferSize(int bufferSize)
+        public virtual TabDelimitedFileLoadOptions WithBufferSize(int bufferSize)
         {
-            return new CsvFileLoadOptions
+            return new TabDelimitedFileLoadOptions
             {
                 FirstRowAsHeaders = this.FirstRowAsHeaders,
                 LineEnding = this.LineEnding,
@@ -60,9 +59,9 @@
             };
         }
 #else
-        public override CsvFileOptions WithLineEnding(string lineEndings)
+        public override TabDelimitedFileOptions WithLineEnding(string lineEndings)
         {
-            return new CsvFileLoadOptions
+            return new TabDelimitedFileLoadOptions
             {
                 FirstRowAsHeaders = this.FirstRowAsHeaders,
                 LineEnding = lineEndings,
@@ -71,9 +70,9 @@
             };
         }
 
-        public override CsvFileOptions WithFirstRowAsHeaders(bool firstRowAsHeaders = true)
+        public override TabDelimitedFileOptions WithFirstRowAsHeaders(bool firstRowAsHeaders = true)
         {
-            return new CsvFileLoadOptions
+            return new TabDelimitedFileLoadOptions
             {
                 FirstRowAsHeaders = firstRowAsHeaders,
                 LineEnding = this.LineEnding,
@@ -82,9 +81,9 @@
             };
         }
 
-        public override CsvFileOptions WithTextQualifier(char? textQualifier)
+        public override TabDelimitedFileOptions WithTextQualifier(char? textQualifier)
         {
-            return new CsvFileLoadOptions
+            return new TabDelimitedFileLoadOptions
             {
                 FirstRowAsHeaders = this.FirstRowAsHeaders,
                 LineEnding = this.LineEnding,
@@ -93,9 +92,9 @@
             };
         }
 
-        public virtual CsvFileOptions WithBufferSize(int bufferSize)
+        public virtual TabDelimitedFileOptions WithBufferSize(int bufferSize)
         {
-            return new CsvFileLoadOptions
+            return new TabDelimitedFileLoadOptions
             {
                 FirstRowAsHeaders = this.FirstRowAsHeaders,
                 LineEnding = this.LineEnding,
@@ -104,5 +103,7 @@
             };
         }
 #endif
+
+        
     }
 }

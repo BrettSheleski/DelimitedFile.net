@@ -1,14 +1,13 @@
 ﻿namespace Sheleski.DelimitedFile
 {
-
-    public class CsvFileOptions : IDelimitedFileOptions
+    public class TabDelimitedFileOptions : IDelimitedFileOptions
     {
-        public static CsvFileOptions WithHeaders = new CsvFileOptions
+        public static TabDelimitedFileOptions WithHeaders = new TabDelimitedFileOptions
         {
             FirstRowAsHeaders = true
         };
 
-        public static CsvFileOptions WithoutHeaders = new CsvFileOptions
+        public static TabDelimitedFileOptions WithoutHeaders = new TabDelimitedFileOptions
         {
             FirstRowAsHeaders = false
         };
@@ -16,11 +15,11 @@
         public string LineEnding { get; protected set; } = "\n";
         public char? TextQualifier { get; protected set; } = '"';
         public bool FirstRowAsHeaders { get; protected set; } = false;
-        char IDelimitedFileOptions.Delimiter { get; } = ',';
+        char IDelimitedFileOptions.Delimiter { get; } = '\t';
 
-        public virtual CsvFileOptions WithLineEnding(string lineEndings)
+        public virtual TabDelimitedFileOptions WithLineEnding(string lineEndings)
         {
-            return new CsvFileOptions
+            return new TabDelimitedFileOptions
             {
                 FirstRowAsHeaders = this.FirstRowAsHeaders,
                 LineEnding = lineEndings,
@@ -28,9 +27,9 @@
             };
         }
 
-        public virtual CsvFileOptions WithFirstRowAsHeaders(bool firstRowAsHeaders = true)
+        public virtual TabDelimitedFileOptions WithFirstRowAsHeaders(bool firstRowAsHeaders = true)
         {
-            return new CsvFileOptions
+            return new TabDelimitedFileOptions
             {
                 FirstRowAsHeaders = firstRowAsHeaders,
                 LineEnding = this.LineEnding,
@@ -38,9 +37,9 @@
             };
         }
 
-        public virtual CsvFileOptions WithTextQualifier(char? textQualifier)
+        public virtual TabDelimitedFileOptions WithTextQualifier(char? textQualifier)
         {
-            return new CsvFileOptions
+            return new TabDelimitedFileOptions
             {
                 FirstRowAsHeaders = this.FirstRowAsHeaders,
                 LineEnding = this.LineEnding,
