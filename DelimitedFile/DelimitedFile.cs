@@ -63,6 +63,9 @@ namespace Sheleski.DelimitedFile
 
         private static string EscapeValue(string value, IDelimitedFileOptions options)
         {
+            if (value == null)
+                return null;
+
             if (
                 (options.TextQualifier != null && value.Any(c => c == options.Delimiter || c == options.TextQualifier)) ||
                 (options.LineEnding != null && value.Contains(options.LineEnding))

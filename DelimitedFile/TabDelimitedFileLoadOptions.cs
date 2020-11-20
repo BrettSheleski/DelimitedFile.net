@@ -12,7 +12,7 @@
             FirstRowAsHeaders = false
         };
 
-        public int BufferSize { get; set; } = 1024;
+        public int BufferSize { get; set; } = 4096;
 
 #if NET5_0
         public override TabDelimitedFileLoadOptions WithLineEnding(string lineEndings)

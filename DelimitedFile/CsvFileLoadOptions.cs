@@ -12,7 +12,7 @@
             FirstRowAsHeaders = true
         };
 
-        public int BufferSize { get; set; } = 1024;
+        public int BufferSize { get; set; } = 4096;
 
 
 #if NET5_0
