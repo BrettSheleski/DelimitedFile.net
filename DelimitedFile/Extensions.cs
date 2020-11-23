@@ -8,7 +8,7 @@ namespace Sheleski.DelimitedFile
 {
     public static class Extensions
     {
-#if NET5_0 || NET45 || NETSTANDARD2_0 || NETSTANDARD2_1
+#if NET5_0 || NET45 || NET46|| NET47|| NET48 || NETSTANDARD2_0 || NETSTANDARD2_1
         public static CsvFile ToCsvFile<T>(this IEnumerable<T> source)
         {
             DelimitedFileObjectMapping<T> mapping = DelimitedFileObjectMapping<T>.GetDefault();

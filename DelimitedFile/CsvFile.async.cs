@@ -1,4 +1,4 @@
-﻿#if NET5_0 || NET45 || NETSTANDARD2_0 || NETSTANDARD2_1
+﻿#if NET5_0 || NET45 || NET46 || NET47 || NET48 || NETSTANDARD2_0 || NETSTANDARD2_1
 
 using System.Threading.Tasks;
 using System.Threading;
