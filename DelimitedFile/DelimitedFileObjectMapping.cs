@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
 namespace Sheleski.DelimitedFile
 {
@@ -64,7 +63,9 @@ namespace Sheleski.DelimitedFile
                 header = property.Name;
                 order = 0;
 
-                displayAttribute = property.GetCustomAttributes(true).OfType<DisplayAttribute>().FirstOrDefault();
+                displayAttribute = property.GetCustomAttributes(true)
+                                           .OfType<DisplayAttribute>()
+                                           .FirstOrDefault();
 
                 if (displayAttribute != null)
                 {

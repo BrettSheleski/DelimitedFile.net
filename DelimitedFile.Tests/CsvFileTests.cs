@@ -76,5 +76,31 @@ namespace Sheleski.DelimitedFile.Tests
             // Verify
             Assert.IsTrue(csvString.Length > 0);
         }
+
+        [TestMethod]
+        public async Task CSvFile_Load_LargeFileFromWeb()
+        {
+            // Setup
+            ulong rowCount = 0;
+            const ulong expectedRowCount = 10000000;
+            string url = "https://raw.githubusercontent.com/Schlumberger/hackathon/master/backend/dataset/data-large.csv";
+
+            HttpWebRequest request = HttpWebRequest.CreateHttp(url);
+            using (var response = await request.GetResponseAsync())
+            using (var stream = response.GetResponseStream())
+            using (var reader = new StreamReader(stream))
+            {
+                CsvFile csv = CsvFile.Load(reader);
+
+                // Act
+                foreach (var line in csv.Values)
+                {
+                    ++rowCount;
+                }
+            }
+
+            // Verify
+            Assert.AreEqual(expectedRowCount, rowCount);
+        }
     }
 }

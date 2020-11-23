@@ -1,7 +1,5 @@
 ﻿#if NET5_0 || NET45 || NETSTANDARD2_0 || NETSTANDARD2_1
 using System;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -230,53 +228,5 @@ namespace Sheleski.DelimitedFile
             return propInfo;
         }
     }
-
-    //public class DelimitedFileObjectPropertyMapping<T>
-    //{
-    //    public DelimitedFileObjectPropertyMapping(PropertyInfo property)
-    //    {
-    //        string header = property.Name;
-    //        int order = 0;
-
-    //        var displayAttribute = property.GetCustomAttributes(true).OfType<DisplayAttribute>().FirstOrDefault();
-
-    //        if (displayAttribute != null)
-    //        {
-    //            order = displayAttribute.GetOrder() ?? 0;
-    //            header = displayAttribute.GetName() ?? header;
-    //        }
-
-    //        this.Order = order;
-    //        this.Header = header;
-    //        this._valueFunc = x => property.GetValue(x, null)?.ToString();
-    //    }
-
-    //    public DelimitedFileObjectPropertyMapping(string header, Func<T, string> valueFunc)
-    //    {
-    //        this.Header = header;
-    //        this._valueFunc = valueFunc;
-    //    }
-
-
-    //    private readonly Func<T, string> _valueFunc;
-
-    //    public string Header { get; set; }
-
-    //    public string GetValue(T source) => _valueFunc(source);
-
-    //    public int Order { get; set; }
-
-    //    public DelimitedFileObjectPropertyMapping<T> WithOrder(int order)
-    //    {
-    //        this.Order = order;
-    //        return this;
-    //    }
-
-    //    public DelimitedFileObjectPropertyMapping<T> WithHeader(string header)
-    //    {
-    //        this.Header = header;
-    //        return this;
-    //    }
-    //}
 }
 #endif

@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelimitedFile", "DelimitedFile\DelimitedFile.csproj", "{5E20BEA3-3BCE-414C-B01B-F7F7F14CCF83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelimitedFile", "DelimitedFile\DelimitedFile.csproj", "{5E20BEA3-3BCE-414C-B01B-F7F7F14CCF83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelimitedFile.Tests", "DelimitedFile.Tests\DelimitedFile.Tests.csproj", "{43DC09EE-F5F6-4FBB-B489-5EC7F541E643}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelimitedFile.Tests", "DelimitedFile.Tests\DelimitedFile.Tests.csproj", "{43DC09EE-F5F6-4FBB-B489-5EC7F541E643}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelimitedFile.MvcCore", "DelimitedFile.MvcCore\DelimitedFile.MvcCore.csproj", "{54223A2C-C427-4A4E-BB60-FDFF13F004F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelimitedFile.Mvc", "DelimitedFile.Mvc\DelimitedFile.Mvc.csproj", "{BFD59E7F-0B71-494F-AEF0-5E6D0B0D3C18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{43DC09EE-F5F6-4FBB-B489-5EC7F541E643}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43DC09EE-F5F6-4FBB-B489-5EC7F541E643}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43DC09EE-F5F6-4FBB-B489-5EC7F541E643}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54223A2C-C427-4A4E-BB60-FDFF13F004F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54223A2C-C427-4A4E-BB60-FDFF13F004F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54223A2C-C427-4A4E-BB60-FDFF13F004F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54223A2C-C427-4A4E-BB60-FDFF13F004F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFD59E7F-0B71-494F-AEF0-5E6D0B0D3C18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFD59E7F-0B71-494F-AEF0-5E6D0B0D3C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFD59E7F-0B71-494F-AEF0-5E6D0B0D3C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFD59E7F-0B71-494F-AEF0-5E6D0B0D3C18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
