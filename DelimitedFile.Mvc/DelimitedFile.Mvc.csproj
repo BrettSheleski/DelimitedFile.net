@@ -6,7 +6,7 @@
     <RootNamespace>Sheleski.DelimitedFile.Mvc</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Brett Sheleski</Authors>
-    <Version>0.0.1.0</Version>
+    <Version>0.1.0.0</Version>
     <Description>Helpers for Sheleski.DelimitedFile for ASP.NET MVC.</Description>
     <Copyright>Copyright © Brett Sheleski 2020</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="4.0.20505" />
     <PackageReference Include="Sheleski.DelimitedFile" Version="0.1.0.4" />
   </ItemGroup>
 
