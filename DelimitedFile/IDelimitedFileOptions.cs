@@ -1,6 +1,6 @@
 ﻿namespace Sheleski.DelimitedFile
 {
-    internal interface IDelimitedFileOptions
+    public interface IDelimitedFileOptions
     {
         string LineEnding { get; }
         char? TextQualifier { get; }

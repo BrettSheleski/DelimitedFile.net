@@ -11,7 +11,12 @@ namespace Sheleski.DelimitedFile
 {
     partial class DelimitedFile
     {
-        internal static async Task WriteAsync(TextWriter writer, IEnumerable<string> headers, IEnumerable<IEnumerable<string>> values, IDelimitedFileOptions options, CancellationToken cancellationToken)
+        public static Task WriteAsync(DelimitedFile delimitedFile, TextWriter textWriter, IDelimitedFileOptions options, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return WriteAsync(textWriter, delimitedFile.Headers, delimitedFile.Values, options, cancellationToken);
+        }
+
+        private static async Task WriteAsync(TextWriter writer, IEnumerable<string> headers, IEnumerable<IEnumerable<string>> values, IDelimitedFileOptions options, CancellationToken cancellationToken)
         {
             bool writeNewline = options.FirstRowAsHeaders && (await WriteValuesAsync(writer, headers, options, cancellationToken)) > 0;
 

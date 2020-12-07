@@ -25,7 +25,7 @@ namespace Sheleski.DelimitedFile
 
 		public async Task WriteAsync(TextWriter writer, CsvFileOptions options, CancellationToken cancellationToken)
 		{
-			await DelimitedFile.WriteAsync(writer, this.Headers, this.Values, options, cancellationToken);
+			await DelimitedFile.WriteAsync(this, writer, options, cancellationToken);
 		}
 
 		public Task SaveAsync(string filePath)

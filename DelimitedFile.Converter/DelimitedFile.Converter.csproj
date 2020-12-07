@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net5;netcoreapp3.1</TargetFrameworks>
+    <AssemblyName>dfc</AssemblyName>
+    <RootNamespace>Sheleski.DelimitedFile.Converter</RootNamespace>
+  </PropertyGroup>
+
+</Project>

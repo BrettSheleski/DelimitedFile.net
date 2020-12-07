@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Sheleski.DelimitedFile
 {
-    public abstract partial class DelimitedFile
+    public partial class DelimitedFile
     {
         public virtual IEnumerable<string> Headers { get; set; }
 

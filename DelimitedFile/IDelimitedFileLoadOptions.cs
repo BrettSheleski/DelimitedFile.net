@@ -1,6 +1,6 @@
 ﻿namespace Sheleski.DelimitedFile
 {
-    internal interface IDelimitedFileLoadOptions : IDelimitedFileOptions
+    public interface IDelimitedFileLoadOptions : IDelimitedFileOptions
     {
         int BufferSize { get; }
     }
