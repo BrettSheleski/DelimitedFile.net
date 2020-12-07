@@ -7,7 +7,7 @@
     <RootNamespace>Sheleski.DelimitedFile</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Title>Delimited File</Title>
-    <Version>0.1.0.4</Version>
+    <Version>0.1.0.5</Version>
     <Authors>Brett Sheleski</Authors>
     <Copyright>Copyright © Brett Sheleski 2020</Copyright>
     <Description>Library for parsing and saving CSV and Tab Delimited Files in .NET.</Description>
@@ -17,7 +17,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>CSV, Tab Delimited, Delimited File</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <AssemblyVersion>0.1.0.3</AssemblyVersion>
+    <AssemblyVersion>0.1.0.5</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net45'">

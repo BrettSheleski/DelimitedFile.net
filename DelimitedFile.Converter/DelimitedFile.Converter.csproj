@@ -7,4 +7,8 @@
     <RootNamespace>Sheleski.DelimitedFile.Converter</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Sheleski.DelimitedFile" Version="0.1.0.5" />
+  </ItemGroup>
+
 </Project>
