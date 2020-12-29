@@ -138,6 +138,25 @@ Abraham,Lincoln,2/12/1809 12:00:00 AM,,System.Collections.Generic.List`1[Shelesk
 
         }
 
+        [TestMethod]
+        public void DelimitedFileToEnumerablePerson()
+        {
+            // setup
+            DelimitedFile delimitedFile = new CsvFile();
+
+            delimitedFile.Headers = new string[] { "BirthDay", "LastName", "FirstName", "DeathDate" };
+            delimitedFile.Values = new string[][]{
+                new string[]{ "1/8/1935", "Presley", "Elvis", null},
+                new string[]{ "2/12/1809", "Lincoln", "Abraham", "4/15/1865 12:00:00 AM"}
+            };
+
+            // act
+            List<Person> people = delimitedFile.Select<Person>().ToList();
+
+            // verify
+            Assert.AreEqual(2, people.Count);
+        }
+
         class Person
         {
             [Display(Order = 1, Name = "First Name")]
