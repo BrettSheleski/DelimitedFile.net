@@ -26,7 +26,7 @@ namespace Sheleski.DelimitedFile.Converter
             }
 
             using (reader = new System.IO.StreamReader(await GetSourceStreamAsync(url)))
-            using (writer = new System.IO.StreamWriter(Console.OpenStandardOutput()))
+            await using (writer = new System.IO.StreamWriter(Console.OpenStandardOutput()))
             {
 
                 var converter = new Converter(options);

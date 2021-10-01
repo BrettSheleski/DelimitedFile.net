@@ -4,6 +4,17 @@
     <TargetFrameworks>netstandard2.1;netcoreapp3.1;net5</TargetFrameworks>
     <RootNamespace>Sheleski.DelimitedFile.MvcCore</RootNamespace>
     <AssemblyName>Sheleski.DelimitedFile.MvcCore</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.1.0.1</Version>
+    <Authors>Brett Sheleski</Authors>
+    <Company>Brett Sheleski</Company>
+    <Description>Helpers for Sheleski.DelimitedFile for ASP.NET MVCCore.</Description>
+    <Copyright>Copyright © Brett Sheleski 2021</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/BrettSheleski/DelimitedFile.net</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/BrettSheleski/DelimitedFile.net</RepositoryUrl>
+    <PackageTags>CSV, Tab Delimited, Delimited File, MVC</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

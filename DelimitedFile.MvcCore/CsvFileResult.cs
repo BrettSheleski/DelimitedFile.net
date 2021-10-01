@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -31,7 +32,8 @@ namespace Sheleski.DelimitedFile.MvcCore
             context.HttpContext.Response.ContentType = "text/csv";
             context.HttpContext.Response.Headers.Add("Pragma", "public");
 
-            using (var writer = new StreamWriter(context.HttpContext.Response.Body))
+            
+            await using (var writer = new StreamWriter(context.HttpContext.Response.Body))
             {
                 await this.CsvFile.WriteAsync(writer);
             }

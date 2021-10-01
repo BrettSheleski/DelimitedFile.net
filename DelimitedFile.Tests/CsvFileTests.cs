@@ -19,7 +19,7 @@ namespace Sheleski.DelimitedFile.Tests
             // Setup
             WebRequest request = HttpWebRequest.Create("https://raw.githubusercontent.com/forxer/languages-list/master/src/Languages.csv");
             using (WebResponse response = await request.GetResponseAsync())
-            using (var stream = response.GetResponseStream())
+            await using (var stream = response.GetResponseStream())
             using (var reader = new StreamReader(stream))
             {
 
@@ -87,7 +87,7 @@ namespace Sheleski.DelimitedFile.Tests
 
             HttpWebRequest request = HttpWebRequest.CreateHttp(url);
             using (var response = await request.GetResponseAsync())
-            using (var stream = response.GetResponseStream())
+            await using (var stream = response.GetResponseStream())
             using (var reader = new StreamReader(stream))
             {
                 CsvFile csv = CsvFile.Load(reader);
