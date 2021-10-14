@@ -75,6 +75,13 @@ class Person
 
 Now lets create some people and make a CSV File from it.
 
+First make sure to include the using directive.
+
+```C#
+using Sheleski.DelimitedFile;
+```
+
+Now we can make use of the `.ToCsvFile()` extension method.
 
 ```C#
 Person[] people = new Person[]
@@ -88,7 +95,7 @@ CsvFile csvFile = people.ToCsvFile();
 ```
 
 Resulting CSV string:
-```CSV
+```csv
 First Name,Last Name,Birth Date,Death Date,Children
 Elvis,Presley,1/8/1935 12:00:00 AM,,System.Collections.Generic.List`1[Sheleski.DelimitedFile.Tests.CsvFile_EnumerableExtensions+Person]
 Abraham,Lincoln,2/12/1809 12:00:00 AM,4/15/1865 12:00:00 AM,System.Collections.Generic.List`1[Sheleski.DelimitedFile.Tests.CsvFile_EnumerableExtensions+Person]
