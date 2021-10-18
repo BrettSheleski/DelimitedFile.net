@@ -5,7 +5,7 @@
     <RootNamespace>Sheleski.DelimitedFile.MvcCore</RootNamespace>
     <AssemblyName>Sheleski.DelimitedFile.MvcCore</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.0.1</Version>
+    <Version>0.1.0.2</Version>
     <Authors>Brett Sheleski</Authors>
     <Company>Brett Sheleski</Company>
     <Description>Helpers for Sheleski.DelimitedFile for ASP.NET MVCCore.</Description>
