@@ -41,8 +41,10 @@ namespace Sheleski.DelimitedFile.MvcCore
             context.HttpContext.Response.ContentType = "text/csv";
             context.HttpContext.Response.Headers.Add("Pragma", "public");
 
-            
-            await using (var writer = new StreamWriter(context.HttpContext.Response.Body, this.Encoding))
+#if NET5_0_OR_GREATER
+            await
+#endif
+            using (var writer = new StreamWriter(context.HttpContext.Response.Body, this.Encoding))
             {
                 await this.CsvFile.WriteAsync(writer);
             }

@@ -45,8 +45,8 @@ namespace Sheleski.DelimitedFile
 
 		public async Task SaveAsync(string filePath, CsvFileOptions options, CancellationToken cancellationToken)
 		{
-			await using (var stream = new FileStream(filePath, FileMode.OpenOrCreate))
-			await using (var writer = new StreamWriter(stream))
+			using (var stream = new FileStream(filePath, FileMode.OpenOrCreate))
+			using (var writer = new StreamWriter(stream))
 			{
 				await WriteAsync(writer, options, cancellationToken);
 			}

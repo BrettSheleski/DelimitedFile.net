@@ -1,24 +1,29 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net45;net46;net48</TargetFrameworks>
+    <TargetFrameworks>net45;net47;net46;net48</TargetFrameworks>
     <AssemblyName>Sheleski.DelimitedFile.Mvc</AssemblyName>
     <RootNamespace>Sheleski.DelimitedFile.Mvc</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Brett Sheleski</Authors>
-    <Version>0.1.0.2</Version>
+    <Version>0.1.0.6</Version>
     <Description>Helpers for Sheleski.DelimitedFile for ASP.NET MVC.</Description>
     <Copyright>Copyright © Brett Sheleski 2020</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/BrettSheleski/DelimitedFile.net</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/BrettSheleski/DelimitedFile.net</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>CSV, Tab Delimited, Delimited File, MVC</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="4.0.20505" />
-    <PackageReference Include="Sheleski.DelimitedFile" Version="0.1.0.4" />
+    <PackageReference Include="Sheleski.DelimitedFile" Version="0.1.0.6" />
   </ItemGroup>
 
   <ItemGroup>
